@@ -2,23 +2,24 @@
 
 Builds a docker image containing:
   
-  * ansible   v2.5.1
-  * awscli    v1.18.19
-  * packer    v1.5.4
-  * terraform v0.12.23
+  * ansible                       v2.9.6
+  * awscli                        v2.1.29
+  * packer                        v1.7.0
+  * terraform                     v0.14.7
+  * terraform provisioner ansible v2.5.0
 
 ## Building Docker Image
 ```bash
-docker build -t codebarber/ansible-packer-terraform .
+docker build -t jesielconceicao/ansible-packer-terraform .
 ```
 
 ## Examples getting versions
 
 ```bash
-docker run --rm codebarber/ansible-packer-terraform terraform -version
-docker run --rm codebarber/ansible-packer-terraform packer -version
-docker run --rm codebarber/ansible-packer-terraform ansible --version
-docker run --rm codebarber/ansible-packer-terraform aws --version
+docker run --rm jesielconceicao/ansible-packer-terraform terraform -version
+docker run --rm jesielconceicao/ansible-packer-terraform packer -version
+docker run --rm jesielconceicao/ansible-packer-terraform ansible --version
+docker run --rm jesielconceicao/ansible-packer-terraform aws --version
 ```
 
 ## Bash Functions
@@ -34,7 +35,7 @@ dansible ()
              -v $(pwd):/opt/ \
              -v ~/.aws:/root/.aws \
              -v ~/.ssh:/root/.ssh \
-             codebarber/ansible-packer-terraform ansible $@
+             jesielconceicao/ansible-packer-terraform ansible $@
 }
 
 daws () 
@@ -44,7 +45,7 @@ daws ()
              -v $(pwd):/opt/ \
              -v ~/.aws:/root/.aws \
              -v ~/.ssh:/root/.ssh \
-             codebarber/ansible-packer-terraform aws $@
+             jesielconceicao/ansible-packer-terraform aws $@
 }
 
 dpacker () 
@@ -54,7 +55,7 @@ dpacker ()
              -v $(pwd):/opt/ \
              -v ~/.aws:/root/.aws \
              -v ~/.ssh:/root/.ssh \
-             codebarber/ansible-packer-terraform packer $@
+             jesielconceicao/ansible-packer-terraform packer $@
 }
 
 dterraform () 
@@ -64,7 +65,7 @@ dterraform ()
              -v $(pwd):/opt/ \
              -v ~/.aws:/root/.aws \
              -v ~/.ssh:/root/.ssh \
-             codebarber/ansible-packer-terraform terraform $@
+             jesielconceicao/ansible-packer-terraform terraform $@
 }
 ```
 
@@ -90,7 +91,7 @@ Initial size:
 ```
 base: bionic-20200219
 packages: 280
-codebarber/ansible-packer-terraform   latest   880MB
+jesielconceicao/ansible-packer-terraform   latest   880MB
 Notes: ansible is default ubuntu package.
        packer/terraform are binary and awscli is pip install
 ```
